@@ -8,6 +8,9 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        html {
+            scroll-behavior: smooth;
+        }
         body {
             background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
             background-size: 400% 400%;
@@ -65,6 +68,14 @@
             margin-top: 4rem;
             border-top: 1px solid rgba(255,255,255,0.2);
             padding-top: 3rem;
+            transition: all 0.5s ease;
+        }
+
+        .doc-highlight {
+            box-shadow: 0 0 30px rgba(255,255,255,0.3);
+            border-radius: 16px;
+            padding: 1.5rem;
+            background: rgba(255,255,255,0.15);
         }
 
         .doc-card {
@@ -150,7 +161,7 @@
                 </div>
             </div>
 
-            <div class="doc-section">
+            <div class="doc-section" id="documentation">
                 <h2 class="text-3xl font-bold text-white mb-6 text-center">静态网页托管 | 文档</h2>
                 
                 <div class="doc-card">
@@ -186,7 +197,7 @@
 
                 <div class="doc-card">
                     <h3 class="text-white font-bold text-xl mb-3 flex items-center gap-2">
-                        <i class="fa-solid fa-domain text-purple-300"></i>
+                        <i class="fa-solid fa-globe text-purple-300"></i>
                         自定义域名配置
                     </h3>
                     <p class="text-white/80 mb-3">支持绑定你自己的域名，自动配置HTTPS证书：</p>
@@ -218,7 +229,7 @@
                     <i class="fa-solid fa-rocket"></i>
                     立即开始部署
                 </button>
-                <button class="btn-animate bg-transparent border-2 border-white text-white hover:bg-white/10 font-bold py-3 px-8 rounded-full shadow-lg flex items-center justify-center gap-2">
+                <button id="view-doc-btn" class="btn-animate bg-transparent border-2 border-white text-white hover:bg-white/10 font-bold py-3 px-8 rounded-full shadow-lg flex items-center justify-center gap-2">
                     <i class="fa-solid fa-book"></i>
                     查看文档
                 </button>
@@ -232,7 +243,24 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const buttons = document.querySelectorAll('button');
+            // 查看文档按钮平滑滚动
+            const viewDocBtn = document.getElementById('view-doc-btn');
+            const docSection = document.getElementById('documentation');
+            
+            viewDocBtn.addEventListener('click', () => {
+                docSection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+                
+                // 添加高亮效果
+                docSection.classList.add('doc-highlight');
+                setTimeout(() => {
+                    docSection.classList.remove('doc-highlight');
+                }, 2000);
+            });
+
+            const buttons = document.querySelectorAll('button:not(#view-doc-btn)');
             buttons.forEach(btn => {
                 btn.addEventListener('click', function(e) {
                     console.log('Button clicked:', this.innerText);
@@ -263,4 +291,4 @@
         });
     </script>
 </body>
-</html>
+</html><!--09100952112395614730090921-->
