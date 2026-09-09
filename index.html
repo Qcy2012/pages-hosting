@@ -59,6 +59,45 @@
             color: white;
             text-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
+
+        .doc-section {
+            text-align: left;
+            margin-top: 4rem;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            padding-top: 3rem;
+        }
+
+        .doc-card {
+            background: rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .doc-card:hover {
+            background: rgba(255,255,255,0.18);
+            transform: translateX(5px);
+        }
+
+        .code-block {
+            background: rgba(0,0,0,0.3);
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+            font-family: 'Consolas', 'Monaco', monospace;
+            color: #e0e0e0;
+            overflow-x: auto;
+        }
+
+        .tip-block {
+            background: rgba(59, 130, 246, 0.2);
+            border-left: 4px solid #3b82f6;
+            padding: 1rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1rem 0;
+        }
     </style>
 </head>
 <body class="min-h-screen flex flex-col relative">
@@ -111,7 +150,70 @@
                 </div>
             </div>
 
-            <div class="flex flex-col sm:flex-row justify-center gap-4">
+            <div class="doc-section">
+                <h2 class="text-3xl font-bold text-white mb-6 text-center">静态网页托管 | 文档</h2>
+                
+                <div class="doc-card">
+                    <h3 class="text-white font-bold text-xl mb-3 flex items-center gap-2">
+                        <i class="fa-solid fa-rocket text-blue-300"></i>
+                        快速开始
+                    </h3>
+                    <p class="text-white/80 mb-3">只需要三步即可完成静态网站部署：</p>
+                    <ol class="text-white/80 space-y-2 ml-6 list-decimal">
+                        <li>注册账号并创建新的托管项目</li>
+                        <li>上传你的静态文件（HTML/CSS/JS/图片等资源）</li>
+                        <li>等待几秒即可获得专属访问域名，全球可访问</li>
+                    </ol>
+                    <div class="tip-block text-white/90 text-sm">
+                        <i class="fa-solid fa-lightbulb text-yellow-300 mr-2"></i>
+                        提示：单文件大小不超过100MB，总项目大小不超过1GB即可免费使用。
+                    </div>
+                </div>
+
+                <div class="doc-card">
+                    <h3 class="text-white font-bold text-xl mb-3 flex items-center gap-2">
+                        <i class="fa-brands fa-git-alt text-orange-300"></i>
+                        Git 自动部署
+                    </h3>
+                    <p class="text-white/80 mb-3">绑定你的GitHub/GitEE仓库，每次推送代码自动触发部署：</p>
+                    <div class="code-block">
+# 1. 在项目设置中关联你的Git仓库<br>
+# 2. 选择需要部署的分支（通常是main或gh-pages）<br>
+# 3. 指定构建命令和输出目录（如npm run build → dist/）<br>
+# 4. 完成配置后，每次git push自动部署更新
+                    </div>
+                </div>
+
+                <div class="doc-card">
+                    <h3 class="text-white font-bold text-xl mb-3 flex items-center gap-2">
+                        <i class="fa-solid fa-domain text-purple-300"></i>
+                        自定义域名配置
+                    </h3>
+                    <p class="text-white/80 mb-3">支持绑定你自己的域名，自动配置HTTPS证书：</p>
+                    <ul class="text-white/80 space-y-2 ml-6 list-disc">
+                        <li>进入项目设置 → 域名管理 → 添加自定义域名</li>
+                        <li>在你的域名服务商处添加CNAME记录指向我们提供的接入域名</li>
+                        <li>等待DNS生效后，系统将自动申请并配置SSL证书</li>
+                    </ul>
+                </div>
+
+                <div class="doc-card">
+                    <h3 class="text-white font-bold text-xl mb-3 flex items-center gap-2">
+                        <i class="fa-solid fa-circle-question text-green-300"></i>
+                        常见问题
+                    </h3>
+                    <div class="space-y-3 text-white/80">
+                        <p><strong class="text-white">Q：支持哪些类型的网站？</strong><br>
+                        A：支持所有纯静态网站，包括HTML/CSS/JS编写的站点、Vue/React等框架打包后的产物，不支持PHP/Node.js等需要服务器运行的动态项目。</p>
+                        <p><strong class="text-white">Q：部署后的网站有流量限制吗？</strong><br>
+                        A：免费版每月提供100GB流量，足够个人博客、小型作品集使用，超出后可升级到付费版获得更多流量。</p>
+                        <p><strong class="text-white">Q：部署后可以回滚到历史版本吗？</strong><br>
+                        A：支持，系统会保留最近10次部署记录，一键即可回滚到任意历史版本。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row justify-center gap-4 mt-10">
                 <button class="btn-animate bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3 px-8 rounded-full shadow-lg flex items-center justify-center gap-2">
                     <i class="fa-solid fa-rocket"></i>
                     立即开始部署
@@ -146,6 +248,17 @@
                     card.style.opacity = '1';
                     card.style.transform = 'translateY(0)';
                 }, 300 + (index * 100));
+            });
+
+            const docCards = document.querySelectorAll('.doc-card');
+            docCards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    card.style.transition = 'all 0.6s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateX(0)';
+                }, 800 + (index * 150));
             });
         });
     </script>
