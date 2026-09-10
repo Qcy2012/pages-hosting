@@ -248,7 +248,6 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // 查看文档按钮平滑滚动
             const viewDocBtn = document.getElementById('view-doc-btn');
             const docSection = document.getElementById('documentation');
             
@@ -258,14 +257,13 @@
                     block: 'start',
                     inline: 'nearest'
                 });
-                
-                // 添加高亮效果
-                setTimeout(() => {
-                    docSection.classList.add('doc-highlight');
-                    setTimeout(() => {
-                        docSection.classList.remove('doc-highlight');
-                    }, 2000);
-                }, 300);
+
+                //setTimeout(() => {
+                    //docSection.classList.add('doc-highlight');
+                    //setTimeout(() => {
+                        //docSection.classList.remove('doc-highlight');
+                    //}, 2000);
+                //}, 300);
             });
 
             const buttons = document.querySelectorAll('button:not(#view-doc-btn)');
@@ -299,4 +297,4 @@
         });
     </script>
 </body>
-</html><!--22807102892573747210091007--><!--12200133952573747210091011--><!--12265303392395614730091011--><!--12345036862395614730091011--><!--12404585172395614730091011--><!--12465011892395614730091011--><!--26850683802573747210091011--><!--26998453582395614730091011-->
+</html>
